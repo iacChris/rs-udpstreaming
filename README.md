@@ -68,7 +68,11 @@ Congratulations! That's it for the installation process.
 and comment out the lines: `rs_cfg.enable_stream(RS2_STREAM_DEPTH, WIDTH, HEIGHT, RS2_FORMAT_Z16, FRAME); rs_cfg.enable_stream(RS2_STREAM_COLOR, WIDTH, HEIGHT, RS2_FORMAT_RGB8, FRAME);`
 , vice versa.
 
-3. Start the receiver first and then the sender.
+3. Compile the sender. 
+
+```g++ streamer.cpp `pkg-config opencv gstreamer-1.0 gstreamer-app-1.0 realsense2 --libs --cflags` -o streamer```
+
+4. Start the receiver first and then the sender.
 
 #### Implementation:
 The 16-bit raw depth image requires too much bandwidth to stream over WiFi. Therefore, compression is necessary if real-time streaming is desired. The way I impelment the depth compression is entirely based on [this paper](https://dev.intelrealsense.com/docs/depth-image-compression-by-colorization-for-intel-realsense-depth-cameras) published by Intel. After depth image colorization, the colorized depth image is then passed on to a common gstreamer H264 compression pipeline and sent through the network. 
