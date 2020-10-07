@@ -69,6 +69,7 @@ and comment out the lines: `rs_cfg.enable_stream(RS2_STREAM_DEPTH, WIDTH, HEIGHT
 , vice versa.
 
 3. Compile the sender. 
+
 ```g++ streamer.cpp `pkg-config opencv gstreamer-1.0 gstreamer-app-1.0 realsense2 --libs --cflags` -o streamer```
 
 4. Start the receiver first and then the sender.
