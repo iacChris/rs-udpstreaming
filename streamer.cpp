@@ -72,7 +72,7 @@ gint main(gint argc, gchar *argv[])
     color_map.set_option(RS2_OPTION_MAX_DISTANCE, max_depth);
     color_map.set_option(RS2_OPTION_MIN_DISTANCE, min_depth);
 
-    Use when streaming from pre recorded rosbag
+    //Use when streaming from pre recorded rosbag
     // rs_cfg.enable_device_from_file("/home/johnny/Downloads/d435i_sample_data/d435i_walk_around.bag");
 
     //Use when streaing from an intel realsense device
@@ -99,9 +99,9 @@ gint main(gint argc, gchar *argv[])
     // Initialize GStreamer
     gst_init( &argc, &argv );
 
-    loop = g_main_loop_new( NULL, FALSE );    // snprintf( str_pipeline, sizeof( str_pipeline ), "appsrc name=src1 ! queue ! videoconvert ! x264enc tune=zerolatency ! h264parse ! rtph264pay pt=96 ! queue udpsink host=127.0.0.1 port=5000");
-    snprintf( str_pipeline, sizeof( str_pipeline ), "appsrc name=src1 ! queue ! videoconvert ! x264enc tune=zerolatency ! h264parse ! rtph264pay pt=96 ! udpsink host=127.0.0.1 port=5000 \
-                                                     appsrc name=src2 ! queue ! videoconvert ! x264enc tune=zerolatency ! h264parse ! rtph264pay pt=96 ! udpsink host=127.0.0.1 port=5001");
+    loop = g_main_loop_new( NULL, FALSE );    // snprintf( str_pipeline, sizeof( str_pipeline ), "appsrc name=src1 ! queue ! videoconvert ! x264enc tune=zerolatency ! h264parse ! rtph264pay pt=96 ! queue udpsink host=10.0.1.32 port=5000");
+    snprintf( str_pipeline, sizeof( str_pipeline ), "appsrc name=src1 ! queue ! videoconvert ! x264enc tune=zerolatency ! h264parse ! rtph264pay pt=96 ! udpsink host=10.0.1.32 port=5000 \
+                                                     appsrc name=src2 ! queue ! videoconvert ! x264enc tune=zerolatency ! h264parse ! rtph264pay pt=96 ! udpsink host=10.0.1.32 port=5001");
 
 
     // Instruct GStreamer to construct the pipeline and get the beginning element appsrc.
